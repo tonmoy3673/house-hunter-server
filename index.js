@@ -85,6 +85,14 @@ async function run() {
             res.status(201).send({ massage: 'Update successfully' });
         })
 
+        app.delete('/houses/:id',async(req,res)=>{
+            const id=req.params.id;
+            console.log(id);
+            const filter={_id: new ObjectId(id)};
+            await houseCollection.deleteOne(filter);
+            res.status(201).send({massage:'Deleted Successfully!!'})
+        })
+
         console.log('Connected to MongoDB!');
     } catch (error) {
         console.error('MongoDB connection error:', error);
